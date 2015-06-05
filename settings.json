@@ -1,0 +1,435 @@
+{
+  "public": {
+    "freqGauge": {
+      "theme": "none",
+      "radius": 0.95,
+      "range": {
+        "min": 49.7,
+        "max": 50.3,
+        "sweep": 240,
+        "startAngle": -120
+      },
+      "pointer": {
+        "points": [
+          [0.5, -0.01],
+          [0.95, 0],
+          [0.5, 0.01]
+        ],
+        "lineWidth": 1,
+        "color": "red",
+        "alpha": 1,
+        "fillColor": "red",
+        "shadowColor": "black",
+        "dynamics": {
+          "duration": 250,
+          "easing": "easeIn"
+        }
+      },
+      "digital": {
+        "top": 10,
+        "left": 0,
+        "font": "16px sans-serif",
+        "color": "#99f"
+      },
+      "tick": {
+        "minor": {
+          "color": "white",
+          "first": 49.7,
+          "last": 50.3,
+          "interval": 0.01,
+          "startAt": 0.95,
+          "endAt": 1,
+          "lineWidth": 1
+        },
+        "major": {
+          "color": "white",
+          "legend": {
+            "color": "white",
+            "font": "12px sans-serif",
+            "radius": 0.76
+          },
+          "first": 49.7,
+          "last": 50.301,
+          "interval": 0.1,
+          "startAt": 0.9,
+          "endAt": 1,
+          "lineWidth": 2
+        }
+      }
+    },
+    "demandGauge": {
+      "theme": "none",
+      "radius": 0.95,
+      "range": {
+        "min": 10,
+        "max": 90,
+        "sweep": 240,
+        "startAngle": -120
+      },
+      "pointer": {
+        "points": [
+          [0.5, -0.01],
+          [0.95, 0],
+          [0.5, 0.01]
+        ],
+        "lineWidth": 1,
+        "color": "red",
+        "alpha": 1,
+        "fillColor": "red",
+        "shadowColor": "black",
+        "dynamics": {
+          "duration": 250,
+          "easing": "easeIn"
+        }
+      },
+      "digital": {
+        "top": 10,
+        "left": 0,
+        "font": "16px sans-serif",
+        "color": "#6f6"
+      },
+      "tick": {
+        "minor": {
+          "color": "white",
+          "first": 10,
+          "last": 90,
+          "interval": 1,
+          "startAt": 0.95,
+          "endAt": 1,
+          "lineWidth": 1
+        },
+        "major": {
+          "color": "white",
+          "legend": {
+            "color": "white",
+            "font": "12px sans-serif",
+            "radius": 0.8
+          },
+          "first": 10,
+          "last": 90,
+          "interval": 10,
+          "startAt": 0.9,
+          "endAt": 1,
+          "lineWidth": 2
+        }
+      }
+    },
+    "miniGauge": {
+      "theme": "none",
+      "radius": 0.95,
+      "range": {
+        "min": 0,
+        "max": 60,
+        "sweep": 240,
+        "startAngle": -120
+      },
+      "pointer": {
+        "points": [
+          [0.5, -0.01],
+          [0.95, 0],
+          [0.5, 0.01]
+        ],
+        "lineWidth": 1,
+        "color": "red",
+        "alpha": 1,
+        "fillColor": "red",
+        "shadowColor": "black",
+        "dynamics": {
+          "duration": 250,
+          "easing": "easeIn"
+        }
+      },
+      "digital": {
+        "top": 0,
+        "left": 0,
+        "font": "11px sans-serif",
+        "color": "#6f6"
+      },
+      "tick": {
+        "minor": {
+          "color": "white",
+          "first": 0,
+          "last": 60,
+          "interval": 2,
+          "startAt": 0.95,
+          "endAt": 1,
+          "lineWidth": 1
+        },
+        "major": {
+          "color": "white",
+          "legend": {
+            "color": "white",
+            "font": "9px sans-serif",
+            "radius": 0.75
+          },
+          "first": 0,
+          "last": 60,
+          "interval": 10,
+          "startAt": 0.9,
+          "endAt": 1,
+          "lineWidth": 2
+        }
+      }
+    },
+    "demandChart": {
+      "chart": {
+        "plotBackgroundColor": null,
+        "plotBorderWidth": null,
+        "plotShadow": false,
+        "type": "spline",
+        "zoomType": "xy",
+        "alignTicks": false
+      },
+      "title": {
+        "text": "Demand and Frequency Last 24 Hours"
+      },
+      "xAxis": {
+        "type": "datetime",
+        "title": "Time"
+      },
+      "yAxis": [{
+          "title": {
+            "text": "Demand",
+            "color": "green"
+          },
+          "labels": {
+            "style": {
+              "color": "#0f0"
+            }
+          },
+          "min": 10,
+          "max": 90,
+          "startOnTick": true,
+          "endOnTick": true,
+          "tickInterval": 20
+        },
+        {
+          "title": {
+            "text": "Frequency",
+            "color": "#99f"
+          },
+          "labels": {
+            "style": {
+              "color": "#99f"
+            }
+          },
+          "min": 49.8,
+          "max": 50.2,
+          "opposite": true,
+          "startOnTick": true,
+          "endOnTick": true,
+          "tickInterval": 0.1,
+          "gridLineWidth": 0
+      }],
+      "plotOptions": {
+        "spline": {
+          "marker": {
+            "enabled": false
+          }
+        }
+      },
+      "series": [{
+        "name": "Demand",
+        "data": []
+      },
+      {
+        "name": "Frequency",
+        "data": [],
+        "yAxis": 1,
+        "lineWidth": 1
+      }]
+    },
+    "theme": {
+      "colors": ["#00ff00", "#6666ff", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
+        "#55bf3b", "#df5353", "#7798bf", "#aaeeee"
+      ],
+      "chart": {
+        "backgroundColor": {
+          "linearGradient": {
+            "x1": 0,
+            "y1": 0,
+            "x2": 1,
+            "y2": 1
+          },
+          "stops": [
+            [0, "#1f1f1f"],
+            [1, "#2a2a2a"]
+          ]
+        },
+        "borderColor": "#666666",
+        "borderWidth": 1,
+        "borderRadius": 3
+      },
+      "title": {
+        "style": {
+          "color": "#e0e0e3",
+          "fontSize": "14px"
+        }
+      },
+      "subtitle": {
+        "style": {
+          "color": "#e0e0e3"
+        }
+      },
+      "xAxis": {
+        "gridLineColor": "#707073",
+        "labels": {
+          "style": {
+            "color": "#e0e0e3"
+          }
+        },
+        "lineColor": "#707073",
+        "minorGridLineColor": "#505053",
+        "tickColor": "#707073",
+        "title": {
+          "style": {
+            "color": "#a0a0a3"
+          }
+        }
+      },
+      "yAxis": {
+        "gridLineColor": "#707073",
+        "labels": {
+          "style": {
+            "color": "#e0e0e3"
+          }
+        },
+        "lineColor": "#707073",
+        "minorGridLineColor": "#505053",
+        "tickColor": "#707073",
+        "tickWidth": 1,
+        "title": {
+          "style": {
+            "color": "#a0a0a3"
+          }
+        }
+      },
+      "tooltip": {
+        "backgroundColor": "rgba(0, 0, 0, 0.85)",
+        "style": {
+          "color": "#f0f0f0"
+        }
+      },
+      "plotOptions": {
+        "series": {
+          "dataLabels": {
+            "color": "#b0b0b3"
+          },
+          "marker": {
+            "lineColor": "#333"
+          }
+        },
+        "boxplot": {
+          "fillColor": "#505053"
+        },
+        "candlestick": {
+          "lineColor": "white"
+        },
+        "errorbar": {
+          "color": "white"
+        }
+      },
+      "legend": {
+        "itemStyle": {
+          "color": "#e0e0e3"
+        },
+        "itemHoverStyle": {
+          "color": "#fff"
+        },
+        "itemHiddenStyle": {
+          "color": "#606063"
+        }
+      },
+      "credits": {
+        "style": {
+          "color": "#666"
+        }
+      },
+      "labels": {
+        "style": {
+          "color": "#707073"
+        }
+      },
+      "drilldown": {
+        "activeAxisLabelStyle": {
+          "color": "#f0f0f3"
+        },
+        "activeDataLabelStyle": {
+          "color": "#f0f0f3"
+        }
+      },
+      "navigation": {
+        "buttonOptions": {
+          "symbolStroke": "#dddddd",
+          "theme": {
+            "fill": "#505053"
+          }
+        }
+      },
+      "rangeSelector": {
+        "buttonTheme": {
+          "fill": "#505053",
+          "stroke": "#000000",
+          "style": {
+            "color": "#ccc"
+          },
+          "states": {
+            "hover": {
+              "fill": "#707073",
+              "stroke": "#000000",
+              "style": {
+                "color": "white"
+              }
+            },
+            "select": {
+              "fill": "#000003",
+              "stroke": "#000000",
+              "style": {
+                "color": "white"
+              }
+            }
+          }
+        },
+        "inputBoxBorderColor": "#505053",
+        "inputStyle": {
+          "backgroundColor": "#333",
+          "color": "silver"
+        },
+        "labelStyle": {
+          "color": "silver"
+        }
+      },
+      "navigator": {
+        "handles": {
+          "backgroundColor": "#666",
+          "borderColor": "#aaa"
+        },
+        "outlineColor": "#ccc",
+        "maskFill": "rgba(255,255,255,0.1)",
+        "series": {
+          "color": "#7798bf",
+          "lineColor": "#a6c7ed"
+        },
+        "xAxis": {
+          "gridLineColor": "#505053"
+        }
+      },
+      "scrollbar": {
+        "barBackgroundColor": "#808083",
+        "barBorderColor": "#808083",
+        "buttonArrowColor": "#ccc",
+        "buttonBackgroundColor": "#606063",
+        "buttonBorderColor": "#606063",
+        "rifleColor": "#fff",
+        "trackBackgroundColor": "#404043",
+        "trackBorderColor": "#404043"
+      },
+      "legendBackgroundColor": "rgba(0, 0, 0, 0.5)",
+      "background2": "#505053",
+      "dataLabelsColor": "#b0b0b3",
+      "textColor": "#c0c0c0",
+      "contrastTextColor": "#f0f0f3",
+      "maskColor": "rgba(255,255,255,0.3)"
+    }
+  }
+}

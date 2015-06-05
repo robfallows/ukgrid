@@ -1,0 +1,55 @@
+<head>
+  <title>UK National Grid API Test</title>
+  <link href="css/ukgrid.css" rel="stylesheet" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0, width=device-width">
+</head>
+
+<body>
+  <div class="title">
+    UK National Grid
+  </div>
+  <div>
+    {{> miniGauge id="fossil" max=60 minorTickInterval=2}}
+    {{> miniGauge id="nuclear"}}
+    {{> miniGauge id="green"}}
+    {{> miniGauge id="other"}}
+  </div>
+  {{> demandGauge id="demand-gauge"}}
+  {{> freqGauge id="freq-gauge"}}
+  {{> demandChart chartId="demand-chart"}}
+</body>
+
+<template name="freqGauge">
+  <div id="freq-gauge" class="gauge">
+    <div class="legend">
+      Frequency<br>(Hz)
+      {{#if ready}}
+        <div class="info">At {{timestamp}}</div>
+      {{/if}}
+    </div>
+  </div>
+</template>
+
+<template name="demandGauge">
+  <div id="demand-gauge" class="gauge">
+    <div class="legend">
+      Total Demand<br>(GW)
+      {{#if ready}}
+        <div class="info">At {{timestamp}}</div>
+      {{/if}}
+    </div>
+  </div>
+</template>
+
+<template name="demandChart">
+  <div id="demand-chart" class="chart">
+  </div>
+</template>
+
+<template name="miniGauge">
+  <div id="{{id}}" class="small-gauge">
+    <div class="legend">
+      {{id}}<br>(GW)
+    </div>
+  </div>
+</template>

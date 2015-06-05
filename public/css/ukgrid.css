@@ -1,0 +1,66 @@
+body {
+  color:#fff;
+  background:#1a1a1a;
+  font-family:Calibri, Helvetica, Arial, Verdana, sans-serif;
+  font-size:11pt;
+}
+
+.title {
+  font-size:130%;
+  padding:10px;
+  margin:0;
+}
+
+.gauge {
+  position:relative;
+  text-align:center;
+  display:inline-block;
+  width:220px;
+  height:220px;
+  margin:5px 7px 5px 5px;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAB3RJTUUH3wUUDBc5a7u+GAAAAAlwSFlzAAAK8AAACvABQqw0mAAAAARnQU1BAACxjwv8YQUAAAQeSURBVHjarVQLSJtXGNUGjUajNiSLJhqfMTFaNdFGUaNuNswXqIsLw9gOagftUHAyKBQhtdCu2xActhtkslTbMJaKVcnWQakP5hZjqlYwmGo06pKgc2rVZYmPxJ4UCspsaUcDP/z/zf3OPd/5zrlecXFxpTk5Oce93tLvWHBw8HBKSoqwrq4u6MA6CQ/hfwGOjo7+TSaTH9Hp9Kqamhq6ZzEhIYFWXl4uxKv3mwI+ZzE0NOTg8/mrWVlZksLCQqtSqbTk5ubSqqqq+BwOZ3FkZMQVGRkZlZqa+s/CwoL7lQxfvDQ3N5tdLtdDFNYWFBRQ1tfXJ0JCQnYEAoHUczCPxyPHxsZmvRbN0NBQWlpaGtXz3tjYeKKvr0/Z1dUV7/nu6Og4MzAw0IDhEZuamkQKhaICehOh/fHS0lLqkS2DyT4AhWjTCaazUqn0XzD9WCgUzmxvb+sCAgL40DR3bW3tPpFI5LHZ7BNYMwYGBooqKip2+vv7nx5q2WKxOOx2+6OYmJhTLS0t7JKSkgdzc3MPkpKSbvj5+UUWFRXdRDFNLBZ/plKpfqZSqaTKysraoKCgYXRXAtaJLwAPTRFgdGz+hEAgqHGqubq6WhIeHv6h0Wi8Pj8/bwLja76+vvsY0pfR0dFnAEjQ6/U9IHLa7XbfLi4ufnzsYPv19fV/LS0ttYeFhdWiOAkSqK1Wqxb6Kba2tt6Zmpq6AosxMjMzL3Z2dt4CeDj2nV1ZWVHDdp/39vZyDprXJy8v7yQAV5lMpgF2aZTJZFa5XN6TkZHhlZ+f/wX26Nrb23/Mzs4+h6cQAPLExMT3GAxGfnd39zc4YP4goAsW2YGpi8BmjEajmSIiIi6Bna2tra1XJBKxsHZ+b29vHP9rIIUU/wnGx8eVICBG2hKmp6e1h+IFrezItQVTPL+4uKiHL83JycmX4+Pjra2trSoUcfHdsLGx8atOp+sCgQaw48JWzVwu9wM449R/8upJDdpbR6EMhb+jDTOLxboO35mh1R0KhRID5hfA0rC8vNwDpjI8JycmJr6DU/488gKYnZ0NhPA2bLw0MzOj9vb2tqWnp191Op1GmL4DTMRgfRod3cV0hzHxsziIbjAYbh4JCL9RHA4H29/f/w9k/DImrQHYGvSVw1KrKPwaLHmQoM5kMumQ7z4cIPPx8aEdCYiCpxKJJADtpuzu7j6BweuxpkLbThR+irVl3FLfwyplUVFR70OKh8j+HXRy/6V3HlpewvRYSEj05ubmb2BzDVP8yWMvWOocmNrHxsa+gqnfRcuV0PMHeFL/UsDBwcF93DDTmDgHeWZAgsfw3AUwvYdD/AH0EdZtaPlbJIYJPQfUarXtlbcyQN2wwxMSiWSZnJz8BbFkojhVq9VeRYYFSA1Zo9EoysrKbgPM6ql5BkxuzdzprWRmAAAAAElFTkSuQmCC') no-repeat center 130px;
+}
+
+.small-gauge {
+  position:relative;
+  text-align:center;
+  display:inline-block;
+  width:100px;
+  height:100px;
+  margin:5px 6px 5px 5px;
+}
+
+.legend {
+  position:absolute;
+  top:145px;
+  text-align:center;
+  width:210px;
+  margin:5px 5px 5px 10px;
+  padding-top:8px;
+}
+
+.small-gauge .legend {
+  font-size: 70%;
+  position:absolute;
+  top:55px;
+  text-align:center;
+  width:100px;
+  margin:0;
+  padding-top:8px;
+  text-transform:capitalize;
+}
+
+.info {
+  margin-top:10px;
+  font-size:90%;
+  font-weight:lighter;
+  color:#999;
+}
+
+.chart {
+  margin-left:5px;
+  width:450px;
+  height:300px;
+  display:block;
+  position:relative;
+}
