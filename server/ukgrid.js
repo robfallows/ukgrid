@@ -1,8 +1,16 @@
-var load = function() {
+import { Meteor } from 'meteor/meteor';
+import { HTTP } from 'meteor/http';
+import { Demand } from '/imports/api/Demand';
+import { Frequencies } from '/imports/api/Frequencies';
+
+import xml2js from 'xml2js';
+xml2js.parseStringSync = Meteor.wrapAsync(xml2js.parseString, xml2js);
+
+const load = function() {
   try {
-    var result = HTTP.get('http://www.bmreports.com/bsp/additional/soapfunctions.php?output=XML&element=rollingfrequency');
-    var temp = xml2js.parseStringSync(result.content).ROLLING_SYSTEM_FREQUENCY.ST;
-    for (var i=0; i<temp.length; i++ ) {
+    const result = HTTP.get('http://www.bmreports.com/bsp/additional/soapfunctions.php?output=XML&element=rollingfrequency');
+    const temp = xml2js.parseStringSync(result.content).ROLLING_SYSTEM_FREQUENCY.ST;
+    for (let i=0; i<temp.length; i++ ) {
       try {
         Frequencies.insert({
           _id: temp[i]['$'].ST.replace(/ /, 'T'),
@@ -15,14 +23,14 @@ var load = function() {
   }
 
   try {
-    var result = HTTP.get('http://www.bmreports.com/bsp/additional/soapfunctions.php?element=generationbyfueltypetable');
-    var temp = xml2js.parseStringSync(result.content).GENERATION_BY_FUEL_TYPE_TABLE;
-    var at = temp.INST[0]['$'].AT.replace(/ /, 'T');
-    var fuel = temp.INST[0].FUEL;
-    var fossil = nuclear = green = other = 0;
-    for (var i=0; i<fuel.length; i++ ) {
-      var type = fuel[i]['$'].TYPE;
-      var power = +fuel[i]['$'].VAL;
+    const result = HTTP.get('http://www.bmreports.com/bsp/additional/soapfunctions.php?element=generationbyfueltypetable');
+    const temp = xml2js.parseStringSync(result.content).GENERATION_BY_FUEL_TYPE_TABLE;
+    const at = temp.INST[0]['$'].AT.replace(/ /, 'T');
+    const fuel = temp.INST[0].FUEL;
+    let fossil = nuclear = green = other = 0;
+    for (let i=0; i<fuel.length; i++ ) {
+      const type = fuel[i]['$'].TYPE;
+      const power = +fuel[i]['$'].VAL;
       switch (type) {
         case 'CCGT':
         case 'OCGT':
@@ -44,10 +52,10 @@ var load = function() {
     try {
       Demand.insert({
         _id: at,
-        fossil: fossil,
-        nuclear: nuclear,
-        green: green,
-        other: other
+        fossil,
+        nuclear,
+        green,
+        other
       });
     } catch (error) {}
   } catch (error) {

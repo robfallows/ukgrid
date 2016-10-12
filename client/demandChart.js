@@ -1,3 +1,10 @@
+import { Meteor } from 'meteor/meteor';
+import { Template } from 'meteor/templating';
+import { Demand } from '/imports/api/Demand';
+import { Frequencies } from '/imports/api/Frequencies';
+
+import Highcharts from 'highcharts';
+
 //                        Code for setting up and managing a Highcharts chart
 Template.demandChart.onCreated(function() {
   this.subscribe('demand'); //                          Current demand data (24hrs)
@@ -5,7 +12,6 @@ Template.demandChart.onCreated(function() {
 });
 
 Template.demandChart.onRendered(function() { //         On DOM chart render ...
-  var self = this;
   Highcharts.setOptions({ //                            Use local time
     global: {
       useUTC: false
@@ -15,12 +21,12 @@ Template.demandChart.onRendered(function() { //         On DOM chart render ...
   Highcharts.theme = Meteor.settings.public.theme;
   Highcharts.setOptions(Highcharts.theme);
 
-  var chart = $('#' + self.data.chartId).highcharts(Meteor.settings.public.demandChart).highcharts();
-  self.autorun(function() {
-    var t = Date.now() - 86400000;
-    if (self.subscriptionsReady()) {
+  var chart = $('#' + this.data.chartId).highcharts(Meteor.settings.public.demandChart).highcharts();
+  this.autorun(() => {
+    const t = Date.now() - 86400000;
+    if (this.subscriptionsReady()) {
       var i;
-      var groupedDemand = Demand.find().fetch().sort(function(a,b) {
+      var groupedDemand = Demand.find().fetch().sort((a,b) => {
         if (a.ts < b.ts) {
           return -1;
         } else if (a.ts > b.ts) {
@@ -41,7 +47,7 @@ Template.demandChart.onRendered(function() { //         On DOM chart render ...
       groupedDemand = groupedDemand.slice(i);
       chart.series[0].setData(groupedDemand);
       
-      var groupedFrequencies = Frequencies.find().fetch().sort(function(a,b) {
+      var groupedFrequencies = Frequencies.find().fetch().sort((a,b) => {
         if (a.ts < b.ts) {
           return -1;
         } else if (a.ts > b.ts) {

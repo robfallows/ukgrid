@@ -1,43 +1,42 @@
+import { Meteor } from 'meteor/meteor';
+import { Template } from 'meteor/templating';
+import { ReactiveVar } from 'meteor/reactive-var';
+import { TunguskaGauge} from 'meteor/tunguska:gauge';
+import { Demand } from '/imports/api/Demand';
+
+import moment from 'moment';
+
 Template.demandGauge.onCreated(function() {
   this.subscribe('demand');
   this.latest = new ReactiveVar(null);
 });
 
 Template.demandGauge.onRendered(function() {
-  var self = this;
-  var gauge = Meteor.settings.public.demandGauge;
-  gauge.id = self.data.id;
-  gauge.digital.callback = function(p) {
-    return p.toFixed(2);
-  };
+  const gauge = Meteor.settings.public.demandGauge;
+  gauge.id = this.data.id;
+  gauge.digital.callback = (p) => p.toFixed(2);
 
-  self.gauge = new TunguskaGauge(gauge);
-  self.autorun(function() {
-    var latest;
-    if (self.subscriptionsReady()) {
-      latest = Demand.find({}, {
-        sort: {
-          _id: -1
-        },
-        limit: 1
-      }).fetch()[0];
-      self.gauge.set(Demand.findOne(latest._id).power / 1000);
-      self.latest.set(latest.ts);
+  this.gauge = new TunguskaGauge(gauge);
+  this.autorun(() => {
+    if (this.subscriptionsReady()) {
+      const latestPost = Demand.find({}, { sort: { _id: -1 }, limit: 1 }).fetch()[0];
+      this.gauge.set(latestPost.power / 1000);
+      this.latest.set(latestPost.ts);
     } else {
-      self.gauge.set(0);
+      this.gauge.set(0);
     }
   });
 });
 
 Template.demandGauge.helpers({
-  timestamp: function() {
-    var s = Meteor.status().status;
+  timestamp() {
+    const s = Meteor.status().status;
     if (s !== 'connected') {
       return s;
     }
     return moment(Template.instance().latest.get()).format().replace(/T/, ' ');
   },
-  ready: function() {
+  ready() {
     return Template.instance().subscriptionsReady();
   }
 });

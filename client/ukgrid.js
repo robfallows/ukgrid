@@ -1,9 +1,14 @@
-Meteor.subscribe('demand', function() {
-  Tracker.autorun(function() {
-    var latest = Demand.find({}, {sort: {_id:-1}, limit:1}).fetch()[0];
-    fossil.set(latest.fossil);
-    nuclear.set(latest.nuclear);
-    green.set(latest.green);
-    other.set(latest.other);
+import { Meteor } from 'meteor/meteor';
+import { Tracker } from 'meteor/tracker';
+//import { fossil, nuclear, green, other } from '/imports/groups';
+import { Demand } from '/imports/api/Demand';
+
+Meteor.subscribe('demand', () => {
+  Tracker.autorun(() => {
+    const latest = Demand.find({}, {sort: {_id:-1}, limit:1}).fetch()[0];
+    window.fossil.set(latest.fossil);
+    window.nuclear.set(latest.nuclear);
+    window.green.set(latest.green);
+    window.other.set(latest.other);
   });
 });

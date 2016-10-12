@@ -1,44 +1,43 @@
+import { Meteor } from 'meteor/meteor';
+import { Template } from 'meteor/templating';
+import { TunguskaGauge} from 'meteor/tunguska:gauge';
+import { Frequencies } from '/imports/api/Frequencies';
+
+import moment from 'moment';
+
 Template.freqGauge.onCreated(function() {
   this.subscribe('frequencies');
   this.latest = new ReactiveVar(null);
 });
 
 Template.freqGauge.onRendered(function() {
-  var self = this;
-  var gauge = Meteor.settings.public.freqGauge;
-  gauge.id = self.data.id;
-  gauge.digital.callback = function(p) {
-    return p.toFixed(3);
-  };
-  gauge.tick.major.callback = function(v) {
-    return '' + parseInt(parseInt(v*10, 10) / 10, 10) + '.' + (parseInt(v*10, 10) % 10);
-  };
-  gauge.tick.major.legend.callback = function(p) {
-    return p.toFixed(1);
-  };
+  const gauge = Meteor.settings.public.freqGauge;
+  gauge.id = this.data.id;
+  gauge.digital.callback = (p) => p.toFixed(3);
+  gauge.tick.major.callback = (v) => `${parseInt(parseInt(v*10, 10) / 10, 10)}.${(parseInt(v*10, 10) % 10)}`;
+  gauge.tick.major.legend.callback = (p) => p.toFixed(1);
 
-  self.gauge = new TunguskaGauge(gauge);
-  self.autorun(function() {
-    var latest;
-    if (self.subscriptionsReady()) {
-      latest = Frequencies.find({}, {sort: {_id:-1}, limit:1}).fetch()[0];
-      self.gauge.set(Frequencies.findOne(latest._id).freq);
-      self.latest.set(latest.ts);
+  this.gauge = new TunguskaGauge(gauge);
+  this.autorun(() => {
+    if (this.subscriptionsReady()) {
+      const latestPost = Frequencies.find({}, {sort: {_id:-1}, limit:1}).fetch()[0];
+      this.gauge.set(latestPost.freq);
+      this.latest.set(latestPost.ts);
     } else {
-      self.gauge.set(50);
+      this.gauge.set(50);
     }
   });
 });
 
 Template.freqGauge.helpers({
-  timestamp: function() {
-    var s = Meteor.status().status;
+  timestamp() {
+    const s = Meteor.status().status;
     if (s !== 'connected') {
       return s;
     }
     return moment(Template.instance().latest.get()).format().replace(/T/, ' ');
   },
-  ready: function() {
+  ready() {
     return Template.instance().subscriptionsReady();
   }
 });
