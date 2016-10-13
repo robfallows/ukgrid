@@ -58,7 +58,7 @@ body {
 }
 
 .chart {
-  margin-left:5px;
+  margin:10px 0 0 5px;
   width:450px;
   height:300px;
   display:block;
