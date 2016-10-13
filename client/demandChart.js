@@ -25,7 +25,7 @@ Template.demandChart.onRendered(function() { //         On DOM chart render ...
   this.autorun(() => {
     const t = Date.now() - 86400000;
     if (this.subscriptionsReady()) {
-      const groupedDemand = Demand.find().fetch().sort((a,b) => {
+      let groupedDemand = Demand.find().fetch().sort((a,b) => {
         if (a.ts < b.ts) {
           return -1;
         } else if (a.ts > b.ts) {
@@ -64,8 +64,7 @@ Template.demandChart.onRendered(function() { //         On DOM chart render ...
           break;
         }
       }
-      groupedFrequencies = groupedFrequencies.slice(i);
-      chart.series[1].setData(groupedFrequencies);
+      chart.series[1].setData(groupedFrequencies.slice(i));
     }
   });
 });
