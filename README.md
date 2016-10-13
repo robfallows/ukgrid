@@ -12,3 +12,7 @@ meteor --settings settings.json
 ```
 
 Then browse to `localhost:3000`.
+
+## Notes
+
+The REST endpoints I'm polling with this app are updated every minute for frequency and every 5 minutes for power demand. Don't expect highly active gauges!
