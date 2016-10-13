@@ -1,8 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { TunguskaGauge} from 'meteor/tunguska:gauge';
-//import { fossil, nuclear, green, other } from '/imports/groups';
-//import { Demand } from '/imports/api/Demand';
 
 Template.miniGauge.onRendered(function() {
   const instance = Template.instance();
@@ -27,7 +25,6 @@ Template.miniGauge.onRendered(function() {
       default: val = +window.other.get();
     }
     if (instance.subscriptionsReady()) {
-      //latest = Demand.find({}, {sort: {_id:-1}, limit:1}).fetch()[0];
       instance.gauge.set(val / 1000);
     } else {
       instance.gauge.set(0);

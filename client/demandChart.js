@@ -21,12 +21,11 @@ Template.demandChart.onRendered(function() { //         On DOM chart render ...
   Highcharts.theme = Meteor.settings.public.theme;
   Highcharts.setOptions(Highcharts.theme);
 
-  var chart = $('#' + this.data.chartId).highcharts(Meteor.settings.public.demandChart).highcharts();
+  const chart = $('#' + this.data.chartId).highcharts(Meteor.settings.public.demandChart).highcharts();
   this.autorun(() => {
     const t = Date.now() - 86400000;
     if (this.subscriptionsReady()) {
-      var i;
-      var groupedDemand = Demand.find().fetch().sort((a,b) => {
+      const groupedDemand = Demand.find().fetch().sort((a,b) => {
         if (a.ts < b.ts) {
           return -1;
         } else if (a.ts > b.ts) {
@@ -39,7 +38,7 @@ Template.demandChart.onRendered(function() { //         On DOM chart render ...
           +e.power / 1000
         ]
       });
-      for (i=0; i<groupedDemand.length; i++) {
+      for (let i=0; i<groupedDemand.length; i++) {
         if (groupedDemand[i][0] >= t) {
           break;
         }
@@ -47,7 +46,7 @@ Template.demandChart.onRendered(function() { //         On DOM chart render ...
       groupedDemand = groupedDemand.slice(i);
       chart.series[0].setData(groupedDemand);
       
-      var groupedFrequencies = Frequencies.find().fetch().sort((a,b) => {
+      const groupedFrequencies = Frequencies.find().fetch().sort((a,b) => {
         if (a.ts < b.ts) {
           return -1;
         } else if (a.ts > b.ts) {

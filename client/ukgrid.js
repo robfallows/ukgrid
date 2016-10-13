@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
-//import { fossil, nuclear, green, other } from '/imports/groups';
 import { Demand } from '/imports/api/Demand';
 
 Meteor.subscribe('demand', () => {
