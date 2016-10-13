@@ -38,7 +38,8 @@ Template.demandChart.onRendered(function() { //         On DOM chart render ...
           +e.power / 1000
         ]
       });
-      for (let i=0; i<groupedDemand.length; i++) {
+      let i = 0;
+      for (i=0; i<groupedDemand.length; i++) {
         if (groupedDemand[i][0] >= t) {
           break;
         }
