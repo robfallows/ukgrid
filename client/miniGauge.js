@@ -13,7 +13,7 @@ Template.miniGauge.onRendered(function() {
 
   instance.gauge = new TunguskaGauge(gauge);
   
-  instance.autorun(function() {
+  instance.autorun(() => {
     let val;
     switch (instance.gauge.id) {
       case 'fossil': val = +window.fossil.get();

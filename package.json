@@ -5,9 +5,10 @@
     "start": "meteor run"
   },
   "dependencies": {
-    "highcharts": "^5.0.0",
+    "babel-runtime": "^6.26.0",
+    "highcharts": "^5.0.14",
     "meteor-node-stubs": "~0.2.0",
-    "moment": "^2.15.1",
-    "xml2js": "^0.4.17"
+    "moment": "^2.20.1",
+    "xml2js": "^0.4.19"
   }
 }

@@ -20,8 +20,12 @@ Template.demandGauge.onRendered(function() {
   this.autorun(() => {
     if (this.subscriptionsReady()) {
       const latestPost = Demand.find({}, { sort: { _id: -1 }, limit: 1 }).fetch()[0];
-      this.gauge.set(latestPost.power / 1000);
-      this.latest.set(latestPost.ts);
+      if (latestPost) {
+        this.gauge.set(latestPost.power / 1000);
+        this.latest.set(latestPost.ts);
+      } else {
+        this.gauge.set(0);
+      }
     } else {
       this.gauge.set(0);
     }

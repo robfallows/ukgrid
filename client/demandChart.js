@@ -8,7 +8,7 @@ import Highcharts from 'highcharts';
 //                        Code for setting up and managing a Highcharts chart
 Template.demandChart.onCreated(function() {
   this.subscribe('demand'); //                          Current demand data (24hrs)
-  this.subscribe('frequencies'); //                     Current frequency data (24hrs)
+//   this.subscribe('frequencies'); //                     Current frequency data (24hrs)
 });
 
 Template.demandChart.onRendered(function() { //         On DOM chart render ...
@@ -32,7 +32,7 @@ Template.demandChart.onRendered(function() { //         On DOM chart render ...
           return 1;
         }
         return 0;
-      }).map(function(e) {
+      }).map(e => {
         return [
           +e.ts,
           +e.power / 1000
@@ -54,7 +54,7 @@ Template.demandChart.onRendered(function() { //         On DOM chart render ...
           return 1;
         }
         return 0;
-      }).map(function(e) {
+      }).map(e => {
         return [
           +e.ts,
           +e.freq

@@ -21,8 +21,12 @@ Template.freqGauge.onRendered(function() {
   this.autorun(() => {
     if (this.subscriptionsReady()) {
       const latestPost = Frequencies.find({}, {sort: {_id:-1}, limit:1}).fetch()[0];
-      this.gauge.set(latestPost.freq);
-      this.latest.set(latestPost.ts);
+      if (latestPost) {
+        this.gauge.set(latestPost.freq);
+        this.latest.set(latestPost.ts);
+      } else {
+        this.gauge.set(50);
+      }
     } else {
       this.gauge.set(50);
     }
